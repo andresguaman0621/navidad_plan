@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Invitación Especial 🎄</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #1a4731, #2f855a); /* Verde Navideño */
+            overflow-x: hidden;
+        }
+        .christmas-font {
+            font-family: 'Great Vibes', cursive;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Nieve */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white flex items-center justify-center p-4 relative overflow-hidden">
+
+    <div id="snow-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
+    <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-2xl max-w-md w-full z-10 text-center relative">
+        
+        <div id="slide-1" class="slide active flex-col items-center justify-center min-h-[400px]">
+            <h1 class="text-5xl christmas-font text-red-400 mb-4">Hola mi amor ❤️</h1>
+            <p class="text-lg mb-6">Tengo una propuesta especial para ti, pero necesito que leas con atención...</p>
+            <button onclick="nextSlide(2)" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                ¿De qué se trata? 🎁
+            </button>
+        </div>
+
+        <div id="slide-2" class="slide flex-col items-center justify-center min-h-[400px]">
+            <div class="text-6xl mb-4">🙊</div>
+            <h2 class="text-2xl font-bold mb-4">Te tengo un secreto...</h2>
+            <p class="text-lg mb-4">Lo sabía desde el lunes pasado, pero quería darte la sorpresa hoy.</p>
+            <div class="bg-white/20 p-4 rounded-xl mb-6 border border-yellow-400">
+                <p class="text-xl font-bold text-yellow-300">¡Mañana LUNES no tengo clases! 🎉</p>
+            </div>
+            <p class="text-sm italic opacity-80 mb-6">Así que este plan no es solo de un día...</p>
+            <button onclick="nextSlide(3)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                Ver el Plan 📜
+            </button>
+        </div>
+
+        <div id="slide-3" class="slide flex-col items-center justify-center min-h-[400px]">
+            <h2 class="text-3xl christmas-font text-red-400 mb-4">Parte 1: Hoy Domingo</h2>
+            <ul class="text-left space-y-4 mb-6 bg-black/20 p-4 rounded-xl">
+                <li class="flex items-center gap-3">
+                    <span>🕒</span> <span>Inicio: <strong>2:15 PM</strong></span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <span>🎄</span> <span>Vamos al <strong>Recreo</strong> a comprar nuestro arbolito (con promesa de cambiarlo por uno con nieve).</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <span>✨</span> <span>Luego al <strong>Mall El Jardín</strong> para ver el salón de Navidad y los adornos.</span>
+                </li>
+            </ul>
+            
+            <div class="bg-red-500/20 p-3 rounded-lg text-sm mb-4 border border-red-400/50">
+                <p class="mb-2">🚗 <strong>Es una plan transporte:</strong></p>
+                <p>Mis papás usarán el carro. ¿Podríamos ir en el tuyo? Si no, ¡nos vamos en Uber! Pero lo importante es ir juntos.</p>
+            </div>
+
+            <button onclick="nextSlide(4)" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                ¿Y mañana qué? ➡️
+            </button>
+        </div>
+
+        <div id="slide-4" class="slide flex-col items-center justify-center min-h-[400px]">
+            <h2 class="text-3xl christmas-font text-yellow-400 mb-4">Parte 2: Mañana Lunes</h2>
+            <p class="mb-4 text-lg">Como estoy libre...</p>
+            
+            <div class="space-y-4 mb-6">
+                <div class="bg-white/10 p-4 rounded-lg">
+                    <div class="text-2xl mb-2">💻</div>
+                    <p>Sabes que tengo la laptop... me encantaría que me acompañes a gestionar esto.</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-lg">
+                    <div class="text-2xl mb-2">🏠🎄</div>
+                    <p>¡Y luego la mejor parte! Regresar a casa para <strong>armar el árbol bonito juntos</strong>.</p>
+                </div>
+            </div>
+
+            <button onclick="nextSlide(5)" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                Aceptar Invitación
+            </button>
+        </div>
+
+        <div id="slide-5" class="slide flex-col items-center justify-center min-h-[400px]">
+            <h1 class="text-5xl christmas-font text-red-400 mb-6">¿Nos vamos?</h1>
+            <p class="text-xl mb-8">Paso por ti (o tú por mí) en cuanto podamos, pero el plan empieza hoy.</p>
+            
+            <button onclick="celebrate()" class="bg-white text-green-700 font-bold py-4 px-10 rounded-full shadow-xl transform transition hover:scale-110 text-xl animate-bounce">
+                ¡SÍ, VAMOS! ❤️
+            </button>
+            <p id="response-text" class="mt-6 text-yellow-300 hidden font-bold text-lg">¡Te amo! Nos vemos 2:15 PM 🎄</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Función para cambiar slides
+        function nextSlide(slideNumber) {
+            // Ocultar todos los slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            // Mostrar el slide seleccionado
+            document.getElementById('slide-' + slideNumber).classList.add('active');
+        }
+
+        // Función de celebración final
+        function celebrate() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // Lanza confeti
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            // Mostrar mensaje final y ocultar botón
+            document.getElementById('response-text').classList.remove('hidden');
+            
+            // Redirigir a WhatsApp (Opcional - Descomenta y pon tu número si quieres que te avise directo)
+            // setTimeout(() => {
+            //     window.location.href = "https://wa.me/593XXXXXXXXX?text=Me%20encanta%20el%20plan%20amor%20vamos!"; 
+            // }, 2000);
+        }
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Generar Nieve
+        function createSnow() {
+            const container = document.getElementById('snow-container');
+            const snowflakesCount = 50;
+
+            for (let i = 0; i < snowflakesCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.opacity = Math.random();
+                container.appendChild(snowflake);
+            }
+        }
+
+        createSnow();
+    </script>
+</body>
+</html>
